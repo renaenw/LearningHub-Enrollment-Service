@@ -1,24 +1,25 @@
 spring:
   application:
-    name: academic-service          # gateway routes lb://academic-service here
+    name: user-service          # gateway routes lb://user-service here
   config:
-    # 'optional:' = still boots if config-service isn't running yet
-    import: optional:configserver:http://config-service:8888
+    # Pulls user-service-<profile>.yml from the config service.
+    # 'optional:' so the service still boots if the config server is down;
+    # the local profile blocks below are the fallback.
+    import: optional:configserver:${CONFIG_URL:http://config-service:8888}
   datasource:
-    url: ${DB_URL:jdbc:postgresql://postgres:5432/academicdb}
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/userdb}
     username: ${DB_USER:lms}
     password: ${DB_PASSWORD:lms}
   jpa:
     open-in-view: false
 
 server:
-  port: ${SERVER_PORT:8102}
+  port: ${SERVER_PORT:8101}
 
 eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_URL:http://discovery-service:8761/eureka}
-    # off by default so the service runs alone; compose turns it on
     enabled: ${EUREKA_ENABLED:false}
   instance:
     prefer-ip-address: true
@@ -30,7 +31,7 @@ management:
         include: health,info,env
 
 ---
-# ---------- DEV ----------
+# ---------- DEV (fallback; config-service overrides these) ----------
 spring:
   config:
     activate:
@@ -49,14 +50,14 @@ spring:
       mode: always
 
 lms:
-  environment-label: DEV - schema auto-created, SQL logging on, seed data loaded
+  environment-label: DEV - local fallback (config-service not reachable)
 
 logging:
   level:
     edu.lms: DEBUG
 
 ---
-# ---------- PROD ----------
+# ---------- PROD (fallback; config-service overrides these) ----------
 spring:
   config:
     activate:
@@ -70,7 +71,7 @@ spring:
       mode: never
 
 lms:
-  environment-label: PROD - schema validated only, SQL logging off, no seed data
+  environment-label: PROD - local fallback (config-service not reachable)
 
 logging:
   level:
