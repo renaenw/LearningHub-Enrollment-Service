@@ -1,0 +1,6 @@
+# Shared by every profile of enrollment-service.
+# Served at GET /enrollment-service/{profile}
+
+lms:
+  service-owner: Renae Nicole Weiss
+  bounded-context: Enrollment, courses, terms, grade levels
