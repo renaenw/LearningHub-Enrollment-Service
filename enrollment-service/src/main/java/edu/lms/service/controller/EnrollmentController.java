@@ -90,4 +90,11 @@ public class EnrollmentController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/whoami")
+    public String whoami(
+            @org.springframework.beans.factory.annotation.Value("${lms.environment-label}") String label) {
+        return label;
+    }
+
 }
