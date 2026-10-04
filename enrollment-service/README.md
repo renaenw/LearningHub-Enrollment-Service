@@ -28,6 +28,19 @@ managing its data.
 
 ## API Endpoints
 
+### Testing Note
+
+The values shown in braces, such as `{id}`, `{termId}`, `{username}`, and 
+`{courseId}`, represent the value that should be included in the request URL.
+
+For example:
+
+`GET /api/enrollment/courses/{id}`
+
+can be tested with:
+
+`GET /api/enrollment/courses/science-101`
+
 ### Terms
 - `GET /api/enrollment/terms`
 - `GET /api/enrollment/terms/{id}`
@@ -62,6 +75,7 @@ managing its data.
 - `GET /api/enrollment/student/{username}`
 - `GET /api/enrollment/course/{courseId}`
 - `DELETE /api/enrollment/course/{courseId}/student/{username}`
+
 
 ## Running the Service
 
