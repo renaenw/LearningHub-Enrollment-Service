@@ -1,6 +1,13 @@
 spring:
   application:
     name: enrollment-service          # gateway routes lb://enrollment-service here
+  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8082/realms/learninghub}
+          
   config:
     # 'optional:' = still boots if config-service isn't running yet
     import: optional:configserver:${CONFIG_URL:http://config-service:8888}

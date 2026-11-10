@@ -91,6 +91,7 @@ services:
       CONFIG_URL: http://config-service:8888
       EUREKA_ENABLED: "false"
       EUREKA_URL: http://discovery-service:8761/eureka
+      KEYCLOAK_ISSUER_URI: ${KEYCLOAK_ISSUER_URI:-http://localhost:8082/realms/learninghub}
     ports:
       - "8104:8104"
     depends_on:
