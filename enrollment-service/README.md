@@ -1,114 +1,135 @@
-# LearningHub - Enrollment Service
+# LearningHub — Enrollment Service
 
-**Renae Nicole Weiss**
+**SFWE 410: Cloud Native Development**  
+**Service Owner:** Renae Nicole Weiss
 
 ## Overview
 
-The enrollment-service is my microservice for Phase 1 of the LearningHub project. 
-It handles the enrollment side of the application, including terms, grade levels, 
-courses, and student enrollments.
+The Enrollment Service is part of the LearningHub Learning Management System (LMS). It manages student enrollments and information related to courses, academic terms, and grade levels.
 
-- **Port:** 8104
-- **Database:** enrollmentdb
-- **Base Path:** `/api/enrollment`
+This service was developed using Spring Boot, Java 21, PostgreSQL, and REST APIs. It is designed to operate independently and later integrate with the other LearningHub microservices through an API Gateway.
 
-## Main Entities
+## GitHub Repository
 
-The service contains four main entities:
+https://github.com/renaenw/LearningHub-Enrollment-Service/tree/renae-enrollment-service
 
-- **Term** - Stores information about each academic term.
-- **GradeLevel** - Stores the grade levels used for courses.
-- **Course** - Stores course information including the term, grade level, teacher, 
-  meeting days/times, and credits.
-- **Enrollment** - Connects a student username to a course and stores their 
-  enrollment status.
+## Requirements
 
-Each entity has its own repository, service, and controller for accessing and 
-managing its data.
+Before running the application, make sure you have:
 
-## API Endpoints
+- Docker Desktop installed and running
+- Git
+- Postman for API testing
 
-### Testing Note
+Java 21 and Maven are used by the Docker build process, so they do not need to be installed separately when using Docker.
 
-The values shown in braces, such as `{id}`, `{termId}`, `{username}`, and 
-`{courseId}`, represent the value that should be included in the request URL.
+## How to Deploy and Run
 
-For example:
+### 1. Clone the Repository
 
-`GET /api/enrollment/courses/{id}`
+Open PowerShell and run:
 
-can be tested with:
+```powershell
+git clone -b renae-enrollment-service https://github.com/renaenw/LearningHub-Enrollment-Service.git
+cd LearningHub-Enrollment-Service
+```
 
-`GET /api/enrollment/courses/science-101`
+### 2. Start the Enrollment Service
 
-### Terms
-- `GET /api/enrollment/terms`
-- `GET /api/enrollment/terms/{id}`
-- `GET /api/enrollment/terms/current`
-- `POST /api/enrollment/terms`
-- `PUT /api/enrollment/terms/{id}`
-- `DELETE /api/enrollment/terms/{id}`
+Make sure Docker Desktop is running, then execute:
 
-### Grade Levels
-- `GET /api/enrollment/grade-levels`
-- `GET /api/enrollment/grade-levels/{id}`
-- `POST /api/enrollment/grade-levels`
-- `PUT /api/enrollment/grade-levels/{id}`
-- `DELETE /api/enrollment/grade-levels/{id}`
+```powershell
+docker compose up -d --build enrollment-service
+```
 
-### Courses
-- `GET /api/enrollment/courses`
-- `GET /api/enrollment/courses/{id}`
-- `POST /api/enrollment/courses`
-- `PUT /api/enrollment/courses/{id}`
-- `DELETE /api/enrollment/courses/{id}`
-- `GET /api/enrollment/courses/term/{termId}`
-- `GET /api/enrollment/courses/grade-level/{gradeLevel}`
-- `GET /api/enrollment/courses/teacher/{username}`
+Docker Compose starts the required services:
 
-### Enrollments
-- `GET /api/enrollment`
-- `GET /api/enrollment/{id}`
-- `POST /api/enrollment`
-- `PUT /api/enrollment/{id}`
-- `DELETE /api/enrollment/{id}`
-- `GET /api/enrollment/student/{username}`
-- `GET /api/enrollment/course/{courseId}`
-- `DELETE /api/enrollment/course/{courseId}/student/{username}`
+- PostgreSQL — database storage
+- Config Server — application configuration
+- Enrollment Service — REST API on port 8104
 
+The first build may take several minutes.
 
-## Running the Service
+### 3. Verify the Application
 
-The service runs through Docker Compose along with PostgreSQL and the config-service.
+Check the containers:
 
-For the development profile in PowerShell:
+```powershell
+docker compose ps
+```
 
-    $env:PROFILE="dev"
-    docker compose up -d --build enrollment-service
+Verify the Enrollment Service health endpoint:
 
-The service can then be accessed at:
+```powershell
+curl.exe http://localhost:8104/actuator/health
+```
 
-    http://localhost:8104
+A successful response should show:
 
-Health check:
+```json
+{
+  "status": "UP"
+}
+```
 
-    http://localhost:8104/actuator/health
+This confirms that the application is running.
 
-The active configuration can also be checked at:
+## Enrollment Service API
 
-    http://localhost:8104/api/enrollment/whoami
+**Base URL:** `http://localhost:8104/api/enrollment`
 
-The service has both DEV and PROD configuration profiles provided through the 
-Spring Cloud Config Server.
+The service includes functionality for:
 
-## Testing
+- Student enrollments
+- Courses
+- Academic terms
+- Grade levels
 
-I tested the service using Postman with requests for all four entities. This 
-included creating, viewing, and updating data along with the additional course 
-and enrollment search endpoints. I also tested the health check and DEV/PROD 
-configuration to make sure the service was connecting to the config server and 
-PostgreSQL correctly.
+The application uses controllers, services, repositories, and database entities to process and store information.
 
-For Phase 1, the enrollment-service can run and be tested independently. 
-Integration with the other LearningHub microservices will be handled as the 
-project is connected together in later phases.
+## Security and Authentication
+
+Spring Security and OAuth2 Resource Server dependencies are included.
+
+The service is configured to validate JWT bearer tokens and use Keycloak realm roles for authorization.
+
+Current security rules include:
+
+- Administrators can create, update, and delete courses and terms.
+- Student or administrator roles can create enrollments.
+- Enrollment updates and deletions require administrator permissions.
+- Other API requests require authentication.
+- The health endpoint is publicly accessible.
+
+**Important:** Keycloak is not included in this repository's Docker Compose configuration. To test authenticated API requests, a compatible Keycloak instance must be configured and reachable. Full authentication integration with the shared LearningHub application is still pending verification.
+
+## Testing with Postman
+
+1. Open Postman.
+2. Open the Enrollment Service workspace or import the collection.
+3. Set the base URL to `http://localhost:8104`.
+4. Select the request you want to test.
+5. For protected endpoints, configure Authorization as **Bearer Token** and provide a valid JWT from the configured Keycloak realm.
+6. Send the request and review the response.
+
+The Postman workspace is provided separately as part of the submission.
+
+**Postman Workspace:** [Add your workspace link here]
+
+## Stopping the Application
+
+To stop the Docker containers, run:
+
+```powershell
+docker compose down
+```
+
+This stops the services without deleting the PostgreSQL Docker volume.
+
+## Integration with LearningHub
+
+The Enrollment Service is designed to connect with the larger LearningHub system.
+
+In the integrated architecture, requests will pass through the API Gateway to the Enrollment Service. Keycloak will provide authentication, Eureka will support service discovery, and PostgreSQL will store enrollment-related data.
+
+The individual service has been developed separately, with integration into the shared application planned as the next step.
