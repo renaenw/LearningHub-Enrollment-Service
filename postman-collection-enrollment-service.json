@@ -1,0 +1,978 @@
+{
+  "info": {
+    "_postman_id": "cd4121a4-4af6-4adf-9b03-cf32a1c225d4",
+    "name": "LMS Enrollment Service - Phase 1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51782030",
+    "_collection_link": "https://go.postman.co/collection/51782030-cd4121a4-4af6-4adf-9b03-cf32a1c225d4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"science-101\",\r\n    \"termId\": \"fall-2026\",\r\n    \"name\": \"Biology I\",\r\n    \"gradeLevel\": \"grade-11\",\r\n    \"teacher\": \"Mr. Jones\",\r\n    \"color\": \"green\",\r\n    \"days\": \"[\\\"TUESDAY\\\",\\\"THURSDAY\\\"]\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"11:00:00\",\r\n    \"credits\": 3,\r\n    \"startDate\": \"2026-08-24\",\r\n    \"endDate\": \"2026-12-18\",\r\n    \"teacherUsername\": \"mjones\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Course By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses/science-101",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses",
+                "science-101"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Course",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses/science-101",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses",
+                "science-101"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses By Teacher",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses/teacher/msmith",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses",
+                "teacher",
+                "msmith"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses By Grade Level",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses/grade-level/grade-10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses",
+                "grade-level",
+                "grade-10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"science-101\",\r\n    \"termId\": \"fall-2026\",\r\n    \"name\": \"Biology I - Updated\",\r\n    \"gradeLevel\": \"grade-11\",\r\n    \"teacher\": \"Mr. Jones\",\r\n    \"color\": \"green\",\r\n    \"days\": \"[\\\"TUESDAY\\\",\\\"THURSDAY\\\"]\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"11:00:00\",\r\n    \"credits\": 3,\r\n    \"startDate\": \"2026-08-24\",\r\n    \"endDate\": \"2026-12-18\",\r\n    \"teacherUsername\": \"mjones\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses/science-101",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses",
+                "science-101"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Term",
+      "item": [
+        {
+          "name": "Delete Term",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/terms/fall-2026",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "terms",
+                "fall-2026"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current Term",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/terms/current",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "terms",
+                "current"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Term",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"fall-2026\",\r\n    \"name\": \"Fall 2026\",\r\n    \"startDate\": \"2026-08-24\",\r\n    \"endDate\": \"2026-12-18\",\r\n    \"current\": true,\r\n    \"maxCredits\": 18,\r\n    \"quarter\": 1,\r\n    \"academicYear\": \"2026-2027\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/terms/fall-2026",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "terms",
+                "fall-2026"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Terms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/terms",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "terms"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Term By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/terms/fall-2026",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "terms",
+                "fall-2026"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses By Term",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses/term/fall-2026",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses",
+                "term",
+                "fall-2026"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Term",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"fall-2026\",\r\n  \"name\": \"Fall 2026\",\r\n  \"startDate\": \"2026-08-24\",\r\n  \"endDate\": \"2026-12-18\",\r\n  \"current\": true,\r\n  \"maxCredits\": 18,\r\n  \"quarter\": 1,\r\n  \"academicYear\": \"2026-2027\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/terms",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "terms"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Grade Level",
+      "item": [
+        {
+          "name": "Get All Grade Levels",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/grade-levels",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "grade-levels"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Grade Level",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"grade-11\",\r\n    \"name\": \"Grade 11\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/grade-levels",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "grade-levels"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Grade Level By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/grade-levels/grade-11",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "grade-levels",
+                "grade-11"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Grade Level",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"grade-11\",\r\n    \"name\": \"Grade 11 - Updated\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/grade-levels/grade-11",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "grade-levels",
+                "grade-11"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Grade Level",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/grade-levels/grade-11",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "grade-levels",
+                "grade-11"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "item": [
+        {
+          "name": "Create Enrollment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"courseId\": \"science-101\",\r\n    \"username\": \"student2\",\r\n    \"status\": \"Enrolled\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Enrollment",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"courseId\": \"science-101\",\r\n    \"username\": \"student2\",\r\n    \"status\": \"Enrolled\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Enrollment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Enrollment By Student",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/student/student1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "student",
+                "student1"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Enrollment By Course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/course/math-101",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "course",
+                "math-101"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Enrollment By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 2 - Security Tests",
+      "item": [
+        {
+          "name": "Get Grade Levels - Admin Token 200",
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/grade-levels",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "grade-levels"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Enrollments - No Token 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Enrollments - Student Token 200",
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Course - Student Forbidden 403",
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"science-101\",\r\n    \"termId\": \"fall-2026\",\r\n    \"name\": \"Biology I\",\r\n    \"gradeLevel\": \"grade-11\",\r\n    \"teacher\": \"Mr. Jones\",\r\n    \"color\": \"green\",\r\n    \"days\": \"[\\\"TUESDAY\\\",\\\"THURSDAY\\\"]\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"11:00:00\",\r\n    \"credits\": 3,\r\n    \"startDate\": \"2026-08-24\",\r\n    \"endDate\": \"2026-12-18\",\r\n    \"teacherUsername\": \"mjones\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Course - Admin Token 201",
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"science-101\",\r\n    \"termId\": \"fall-2026\",\r\n    \"name\": \"Biology I\",\r\n    \"gradeLevel\": \"grade-11\",\r\n    \"teacher\": \"Mr. Jones\",\r\n    \"color\": \"green\",\r\n    \"days\": \"[\\\"TUESDAY\\\",\\\"THURSDAY\\\"]\",\r\n    \"startTime\": \"10:00:00\",\r\n    \"endTime\": \"11:00:00\",\r\n    \"credits\": 3,\r\n    \"startDate\": \"2026-08-24\",\r\n    \"endDate\": \"2026-12-18\",\r\n    \"teacherUsername\": \"mjones\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8104/api/enrollment/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8104",
+              "path": [
+                "api",
+                "enrollment",
+                "courses"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8104/actuator/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8104",
+          "path": [
+            "actuator",
+            "health"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": "",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Config Profile",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8104/api/enrollment/whoami",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8104",
+          "path": [
+            "api",
+            "enrollment",
+            "whoami"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": "",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
